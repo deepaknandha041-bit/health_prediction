@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="medical-header">
+            <h1>AI Health Prediction System</h1>
+            <p>Select your symptoms for an AI-powered health assessment</p>
+        </div>
+
+        {% if error %}
+        <div class="error-msg">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/predict" method="POST">
+            <label>Select Symptoms:</label>
+            <div class="symptom-grid">
+                <label class="checkbox-item">
+                    <input type="checkbox" name="fever" value="1">
+                    Fever
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="headache" value="1">
+                    Headache
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="cough" value="1">
+                    Cough
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="fatigue" value="1">
+                    Fatigue
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="vomiting" value="1">
+                    Vomiting
+                </label>
+                <label class="checkbox-item">
+                    <input type="checkbox" name="cold" value="1">
+                    Cold
+                </label>
+            </div>
+            
+            <button type="submit" class="btn-predict">Analyze Symptoms</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-card">
+            <div class="confidence-badge">AI Confidence: {{ confidence }}%</div>
+            <div class="disease-name">{{ prediction }}</div>
+            <p style="color: #666; margin-bottom: 20px;">Based on your symptoms, our AI predicts the above condition.</p>
+            
+            <h3 style="color: var(--dark); border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-top: 30px;">Recommended Suggestions</h3>
+            <ul class="suggestions-list">
+                {% for suggestion in suggestions %}
+                <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+
+            <div style="margin-top: 30px; padding: 15px; background: #fffcf0; border-radius: 10px; font-size: 13px; color: #856404; display: flex; align-items: flex-start;">
+                <span style="font-size: 20px; margin-right: 10px;">⚠️</span>
+                <span><strong>Disclaimer:</strong> This is an AI simulation for educational purposes. Please consult a qualified doctor for professional medical advice.</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <footer>
+            &copy; 2026 AI Health Predictor | Powered by Random Forest Classifier
+        </footer>
+    </div>
+</body>
+</html>

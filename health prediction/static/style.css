@@ -1,0 +1,175 @@
+:root {
+    --primary: #007bff;
+    --primary-dark: #0056b3;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --info: #17a2b8;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --medical-blue: #e3f2fd;
+    --medical-gradient: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f0f4f8;
+    color: var(--dark);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h1 {
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+.medical-header {
+    background: var(--medical-gradient);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.checkbox-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.checkbox-item:hover {
+    background: #e9ecef;
+}
+
+.checkbox-item input {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.btn-predict {
+    background: var(--medical-gradient);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+}
+
+.btn-predict:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
+}
+
+.result-card {
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 15px;
+    background: #fff;
+    border-left: 10px solid var(--primary);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.disease-name {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.confidence-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: var(--medical-blue);
+    color: var(--primary-dark);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+}
+
+.suggestions-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.suggestions-list li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.error-msg {
+    background: #fff5f5;
+    color: var(--danger);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 5px solid var(--danger);
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--secondary);
+    font-size: 14px;
+}

@@ -1,0 +1,29 @@
+Fever,Headache,Cough,Fatigue,Vomiting,Cold,Disease
+1,1,1,1,0,0,Flu
+1,0,1,1,0,0,Flu
+1,1,0,1,0,0,Flu
+0,0,1,1,0,1,Cold
+0,0,1,0,0,1,Cold
+1,0,1,1,0,1,Cold
+0,1,0,0,1,0,Migraine
+0,1,0,1,0,0,Migraine
+0,1,1,0,0,0,Migraine
+0,0,0,1,1,0,Food Poisoning
+0,1,0,1,1,0,Food Poisoning
+1,0,0,0,1,0,Food Poisoning
+1,1,1,0,0,1,Pneumonia
+1,0,1,1,0,1,Pneumonia
+1,1,1,1,0,1,Pneumonia
+0,0,0,1,0,0,Fatigue
+0,0,0,0,0,0,Healthy
+1,1,1,1,1,1,Severe Infection
+0,0,0,0,1,1,Common Cold
+1,1,1,1,0,1,Flu
+0,1,1,1,0,0,Flu
+1,0,1,0,0,1,Cold
+0,0,1,1,0,1,Cold
+0,1,1,0,1,0,Migraine
+0,0,0,1,1,1,Food Poisoning
+1,1,0,0,1,0,Food Poisoning
+1,1,1,1,1,0,Severe Infection
+0,1,0,0,0,0,Headache
