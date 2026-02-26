@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Predictor | Medical Intelligence</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="medical-header">
+            <h1>AI Health Predictor</h1>
+            <p>Empowering you with AI-driven medical insights. Please select your symptoms below for an instant
+                assessment.</p>
+        </header>
+
+        {% if error %}
+        <div class="error-msg">
+            <i class="fas fa-exclamation-circle"></i> {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/predict" method="POST" id="predictionForm">
+            <label class="symptom-label">Identify Your Symptoms</label>
+            <div class="symptom-grid">
+                <label class="checkbox-item" onclick="toggleActive(this)">
+                    <input type="checkbox" name="fever" value="1" {% if request.form.get('fever')=='1' %}checked{% endif
+                        %}>
+                    <i class="fas fa-thermometer-half" style="margin-right: 12px; color: var(--accent-indigo);"></i>
+                    Fever
+                </label>
+                <label class="checkbox-item" onclick="toggleActive(this)">
+                    <input type="checkbox" name="headache" value="1" {% if request.form.get('headache')=='1' %}checked{%
+                        endif %}>
+                    <i class="fas fa-head-side-virus" style="margin-right: 12px; color: var(--accent-indigo);"></i>
+                    Headache
+                </label>
+                <label class="checkbox-item" onclick="toggleActive(this)">
+                    <input type="checkbox" name="cough" value="1" {% if request.form.get('cough')=='1' %}checked{% endif
+                        %}>
+                    <i class="fas fa-lungs-virus" style="margin-right: 12px; color: var(--accent-indigo);"></i>
+                    Cough
+                </label>
+                <label class="checkbox-item" onclick="toggleActive(this)">
+                    <input type="checkbox" name="fatigue" value="1" {% if request.form.get('fatigue')=='1' %}checked{%
+                        endif %}>
+                    <i class="fas fa-bed" style="margin-right: 12px; color: var(--accent-indigo);"></i>
+                    Fatigue
+                </label>
+                <label class="checkbox-item" onclick="toggleActive(this)">
+                    <input type="checkbox" name="vomiting" value="1" {% if request.form.get('vomiting')=='1' %}checked{%
+                        endif %}>
+                    <i class="fas fa-biohazard" style="margin-right: 12px; color: var(--accent-indigo);"></i>
+                    Vomiting
+                </label>
+                <label class="checkbox-item" onclick="toggleActive(this)">
+                    <input type="checkbox" name="cold" value="1" {% if request.form.get('cold')=='1' %}checked{% endif
+                        %}>
+                    <i class="fas fa-snowflake" style="margin-right: 12px; color: var(--accent-indigo);"></i>
+                    Cold
+                </label>
+            </div>
+
+            <button type="submit" class="btn-predict">
+                <i class="fas fa-microscope" style="margin-right: 10px;"></i> Start AI Analysis
+            </button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-card" id="results">
+            <div class="confidence-badge">
+                <i class="fas fa-shield-virus"></i> AI Confidence Score: {{ confidence }}%
+            </div>
+            <div class="disease-name">{{ prediction }}</div>
+            <p>Our machine learning model has identified high correlation between your symptoms and the condition above.
+            </p>
+
+            <div class="suggestions-title">
+                <i class="fas fa-hand-holding-medical"></i> Clinical Suggestions
+            </div>
+            <ul class="suggestions-list">
+                {% for suggestion in suggestions %}
+                <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+
+            <div class="disclaimer-box">
+                <span>⚠️</span>
+                <span><strong>Medical Disclaimer:</strong> This system uses a Random Forest Classifier for simulation.
+                    It is not a replacement for professional medical diagnosis. Please seek help from a healthcare
+                    provider for any serious symptoms.</span>
+            </div>
+        </div>
+        {% endif %}
+
+        <footer>
+            &copy; 2026 Medical Intelligence Systems | Powered by Advanced Random Forest CLF
+        </footer>
+    </div>
+
+    <script>
+        function toggleActive(element) {
+            const checkbox = element.querySelector('input');
+            if (checkbox.checked) {
+                element.classList.add('active');
+            } else {
+                element.classList.remove('active');
+            }
+        }
+
+        // Initialize states on load
+        document.querySelectorAll('.checkbox-item').forEach(item => {
+            const checkbox = item.querySelector('input');
+            if (checkbox.checked) {
+                item.classList.add('active');
+            }
+        });
+
+        // Smooth scroll to results if present
+        if (document.getElementById('results')) {
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+
+</html>
